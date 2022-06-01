@@ -41,14 +41,14 @@ public class DM100 extends Mob implements Callback {
 	{
 		spriteClass = DM100Sprite.class;
 		
-		HP = HT = 20;
+		HP = HT = 50;
 		defenseSkill = 8;
 		
-		EXP = 6;
-		maxLvl = 13;
+		EXP = 18;
+		maxLvl = 90;
 		
 		loot = Generator.Category.SCROLL;
-		lootChance = 0.25f;
+		lootChance = 50.25f;
 		
 		properties.add(Property.ELECTRIC);
 		properties.add(Property.INORGANIC);
@@ -56,17 +56,17 @@ public class DM100 extends Mob implements Callback {
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 2, 8 );
+		return Random.NormalIntRange( 10, 15 );
 	}
 	
 	@Override
 	public int attackSkill( Char target ) {
-		return 11;
+		return 15;
 	}
 	
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 4);
+		return Random.NormalIntRange(10, 18);
 	}
 	
 	@Override
@@ -89,7 +89,7 @@ public class DM100 extends Mob implements Callback {
 			spend( TIME_TO_ZAP );
 			
 			if (hit( this, enemy, true )) {
-				int dmg = Random.NormalIntRange(3, 10);
+				int dmg = Random.NormalIntRange(10, 18);
 				enemy.damage( dmg, new LightningBolt() );
 
 				if (enemy.sprite.visible) {

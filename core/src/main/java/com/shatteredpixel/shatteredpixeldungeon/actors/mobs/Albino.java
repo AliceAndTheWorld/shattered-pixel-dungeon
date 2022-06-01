@@ -32,21 +32,21 @@ public class Albino extends Rat {
 
 	{
 		spriteClass = AlbinoSprite.class;
-		
-		HP = HT = 15;
-		EXP = 2;
-		
+
+		HP = HT = 50;
+		EXP = 20;
+
 		loot = new MysteryMeat();
 		lootChance = 1f;
 	}
-	
+
 	@Override
 	public int attackProc( Char enemy, int damage ) {
 		damage = super.attackProc( enemy, damage );
-		if (Random.Int( 2 ) == 0) {
+		if (Random.Int( 0 ) == 0) {
 			Buff.affect( enemy, Bleeding.class ).set( damage );
 		}
-		
+
 		return damage;
 	}
 }

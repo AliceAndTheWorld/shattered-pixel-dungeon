@@ -36,12 +36,19 @@ public class AssassinsBlade extends MeleeWeapon {
 		hitSoundPitch = 0.9f;
 
 		tier = 4;
+		ACC=2.0f;
 	}
 
 	@Override
 	public int max(int lvl) {
 		return  4*(tier+1) +    //20 base, down from 25
 				lvl*(tier+1);   //scaling unchanged
+	}
+
+	@Override
+	public int min(int lvl) {
+		return  4*tier +    //16 base, down from 20
+				lvl*tier;   //scaling unchanged
 	}
 
 	@Override
@@ -57,7 +64,7 @@ public class AssassinsBlade extends MeleeWeapon {
 						max()));
 				int exStr = hero.STR() - STRReq();
 				if (exStr > 0) {
-					damage += Random.IntRange(0, exStr);
+					damage += Random.IntRange(8, exStr);
 				}
 				return damage;
 			}

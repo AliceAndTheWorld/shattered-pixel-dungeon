@@ -30,8 +30,14 @@ public class Longsword extends MeleeWeapon {
 		image = ItemSpriteSheet.LONGSWORD;
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 1f;
-
+		DLY = 0.5f;
+		RCH = 2;
+		ACC = 3;
 		tier = 4;
 	}
-
+	@Override
+	public int max(int lvl) {
+		return  4*(tier+1) +    //20 base, down from 15
+				(lvl*(tier+2)+lvl);   //scaling unchanged
+	}
 }

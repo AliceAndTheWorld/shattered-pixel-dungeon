@@ -45,13 +45,13 @@ public class Swarm extends Mob {
 		spriteClass = SwarmSprite.class;
 		
 		HP = HT = 50;
-		defenseSkill = 5;
+		defenseSkill = 0;
 
-		EXP = 3;
-		maxLvl = 9;
+		EXP = 20;
+		maxLvl = 90;
 		
 		flying = true;
-
+		intelligentAlly = true;
 		loot = new PotionOfHealing();
 		lootChance = 0.1667f; //by default, see lootChance()
 	}
@@ -72,7 +72,7 @@ public class Swarm extends Mob {
 	public void restoreFromBundle( Bundle bundle ) {
 		super.restoreFromBundle( bundle );
 		generation = bundle.getInt( GENERATION );
-		if (generation > 0) EXP = 0;
+		if (generation > 0) EXP = 5;
 	}
 	
 	@Override
@@ -97,7 +97,7 @@ public class Swarm extends Mob {
 			if (candidates.size() > 0) {
 				
 				Swarm clone = split();
-				clone.HP = (HP - damage) / 2;
+				clone.HP = (HP - damage) / 5;
 				clone.pos = Random.element( candidates );
 				clone.state = clone.HUNTING;
 
@@ -121,7 +121,7 @@ public class Swarm extends Mob {
 	private Swarm split() {
 		Swarm clone = new Swarm();
 		clone.generation = generation + 1;
-		clone.EXP = 0;
+		clone.EXP = 1;
 		if (buff( Burning.class ) != null) {
 			Buff.affect( clone, Burning.class ).reignite( clone );
 		}

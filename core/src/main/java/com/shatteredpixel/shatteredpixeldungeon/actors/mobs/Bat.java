@@ -34,12 +34,13 @@ public class Bat extends Mob {
 	{
 		spriteClass = BatSprite.class;
 		
-		HP = HT = 30;
-		defenseSkill = 15;
-		baseSpeed = 2f;
+		HP = HT = 100;
+		defenseSkill = 5;
+
+		baseSpeed = 5f;
 		
-		EXP = 7;
-		maxLvl = 15;
+		EXP = 32;
+		maxLvl = 90;
 		
 		flying = true;
 		
@@ -49,12 +50,12 @@ public class Bat extends Mob {
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 5, 18 );
+		return Random.NormalIntRange( 4, 12 );
 	}
 	
 	@Override
 	public int attackSkill( Char target ) {
-		return 16;
+		return 50;
 	}
 	
 	@Override
@@ -68,13 +69,22 @@ public class Bat extends Mob {
 		int reg = Math.min( damage - 4, HT - HP );
 		
 		if (reg > 0) {
-			HP += reg;
+			HP += 5;
 			sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
 		}
 		
 		return damage;
 	}
-	
+	@Override
+	public void damage(int dmg, Object src) {
+		if (dmg >= 10){
+			//takes 5/6/7/8/9/10 dmg at 5/7/10/14/19/25 incoming dmg
+			dmg = 9 - (int)(Math.sqrt(8*(dmg - 4) + 1) - 1)/2;
+		}
+		super.damage(dmg, src);
+	}
+
+
 	@Override
 	public float lootChance(){
 		return super.lootChance() * ((7f - Dungeon.LimitedDrops.BAT_HP.count) / 7f);

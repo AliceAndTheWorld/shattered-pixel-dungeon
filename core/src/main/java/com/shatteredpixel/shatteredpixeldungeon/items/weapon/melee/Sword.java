@@ -32,6 +32,21 @@ public class Sword extends MeleeWeapon {
 		hitSoundPitch = 1f;
 
 		tier = 3;
+
+		ACC = 2f;
+		DLY = 0.6f;
+		RCH = 2;
+
+	}
+	@Override
+	public int min(int lvl) {
+		return  4*(tier+1) +    //16 base, down from 15
+				lvl*(tier+1);   //scaling unchanged
 	}
 
+	@Override
+	public int max(int lvl) {
+		return  4*(tier+1) +    //12 base, down from 15
+				(lvl*(tier+1)+lvl);   //scaling unchanged
+	}
 }

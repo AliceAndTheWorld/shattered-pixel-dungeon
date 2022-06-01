@@ -36,24 +36,24 @@ public class Snake extends Mob {
 	{
 		spriteClass = SnakeSprite.class;
 		
-		HP = HT = 4;
+		HP = HT = 1;
 		defenseSkill = 25;
 		
-		EXP = 2;
-		maxLvl = 7;
+		EXP = 5;
+		maxLvl = 90;
 		
 		loot = Generator.Category.SEED;
-		lootChance = 0.25f;
+		lootChance = 5.25f;
 	}
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 1, 4 );
+		return Random.NormalIntRange( 3, 3 );
 	}
 	
 	@Override
 	public int attackSkill( Char target ) {
-		return 10;
+		return 12;
 	}
 
 	private static int dodges = 0;

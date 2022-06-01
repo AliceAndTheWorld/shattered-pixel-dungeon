@@ -43,7 +43,7 @@ public class GreatCrab extends Crab {
 		defenseSkill = 0; //see damage()
 		baseSpeed = 1f;
 
-		EXP = 6;
+		EXP = 30;
 
 		state = WANDERING;
 
